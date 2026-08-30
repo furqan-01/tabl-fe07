@@ -11,7 +11,7 @@ export default defineConfig({
     include: ['__tests__/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['**/node_modules/**', '**/dist/**', '**/e2e/**'],
     alias: {
-      '@': path.resolve(__dirname, './'),
+      '@': path.resolve(import.meta.dirname, './'),
     },
     coverage: {
       provider: 'v8',
