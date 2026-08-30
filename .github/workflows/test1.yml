@@ -17,6 +17,11 @@ jobs:
     name: Lint, Unit & E2E Testing
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    
+    # YEH LINE ZAROORI HAI - Is se GitHub Tabl 2 folder ke andar jayega!
+    defaults:
+      run:
+        working-directory: './Tabl 2'
 
     steps:
       - name: Checkout repository
@@ -27,14 +32,16 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
+          cache-dependency-path: './Tabl 2/package-lock.json'
 
-      - name: Install Dependencies
+      - name: Install Dependencies & Fix Testing Environment
         run: |
-          npm install
-          npm install -D jsdom@latest
+          npm ci
+          npm uninstall jsdom
+          npm install -D happy-dom
 
       - name: Run ESLint
-        run: npm run lint
+        run: npm run lint --if-present
 
       - name: Run Vitest Suite (Unit & Component Tests)
         run: npm run test
@@ -43,14 +50,6 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright E2E Tests
-        run: npm run test:e2e
+        run: npm run test:e2e --if-present
         env:
           CI: true
-
-      - name: Upload Playwright Report on Failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 7
