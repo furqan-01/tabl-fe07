@@ -9,6 +9,11 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    
+    # This tells GitHub to look inside your Tabl 2 folder!
+    defaults:
+      run:
+        working-directory: './Tabl 2'
 
     steps:
     - name: Checkout Repository
