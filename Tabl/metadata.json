@@ -1,6 +1,0 @@
-{
-  "name": "Tabl",
-  "description": "Smart Menu Kiosk contactless ordering application",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
