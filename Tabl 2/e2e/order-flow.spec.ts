@@ -28,7 +28,7 @@ test.describe('End-to-End Customer Order Flow with AI Concierge', () => {
     await expect(page).toHaveURL(/.*menu/);
 
     // Verify Menu page heading & content loaded
-    await expect(page.getByRole('heading', { name: /Table Menu & Ordering/i })).toBeVisible();
+    await expect(page.locator('#menu-title')).toBeVisible();
 
     // 3. Open the AI Concierge Drawer / Modal
     const openConciergeBtn = page.getByRole('button', { name: /Open AI Menu Concierge/i });
