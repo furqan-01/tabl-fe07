@@ -29,7 +29,9 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: |
+          npm install
+          npm install -D jsdom@latest
 
       - name: Run ESLint
         run: npm run lint
